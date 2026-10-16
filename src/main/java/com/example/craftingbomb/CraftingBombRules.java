@@ -40,15 +40,6 @@ public final class CraftingBombRules {
         if (ticks >= fuse) {
             TIMERS.remove(player.getUuid());
             explode(player);
-            return;
-        }
-
-        if (CraftingBombConfig.showCountdown) {
-            double remaining = (fuse - ticks) / 20.0;
-            player.sendMessage(
-                    Text.literal("⚠ 工作台将在 " + String.format("%.1f", remaining) + " 秒后爆炸 ⚠")
-                            .formatted(remaining <= 1.0 ? Formatting.RED : Formatting.YELLOW),
-                    true);
         }
     }
 
@@ -87,16 +78,26 @@ public final class CraftingBombRules {
      */
     public static void explode(ServerPlayerEntity player) {
         ServerWorld world = player.getServerWorld();
-        world.createExplosion(
-                player,
-                player.getX(), player.getY() + 0.5, player.getZ(),
-                CraftingBombConfig.explosionPower,
-                CraftingBombConfig.destroyBlocks
-                        ? World.ExplosionSourceType.TNT
-                        : World.ExplosionSourceType.NONE);
+        float power = CraftingBombConfig.explosionPower;
+
+        if (CraftingBombConfig.destroyBlocks) {
+            // TNT 类型：破坏方块 + 伤害实体
+            world.createExplosion(player,
+                    player.getX(), player.getY() + 0.5, player.getZ(),
+                    power, World.ExplosionSourceType.TNT);
+        } else {
+            // NONE 类型只保证不破坏方块，对实体的伤害很弱，
+            // 所以额外补一次直接伤害，确保"炸了就一定疼"。
+            world.createExplosion(player,
+                    player.getX(), player.getY() + 0.5, player.getZ(),
+                    power, World.ExplosionSourceType.NONE);
+            if (power > 0.0F) {
+                player.damage(world.getDamageSources().generic(), power * 4.0F);
+            }
+        }
 
         CraftingBomb.LOGGER.info("[Crafting Bomb] {} 盯着工作台太久，炸了（威力 {}，{}）",
-                player.getName().getString(), CraftingBombConfig.explosionPower,
+                player.getName().getString(), power,
                 CraftingBombConfig.destroyBlocks ? "破坏方块" : "不破坏方块");
     }
 }

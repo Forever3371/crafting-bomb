@@ -82,8 +82,7 @@ public final class CraftingBombCommand {
         source.sendFeedback(() -> Text.literal("引信：" + trim(CraftingBombConfig.fuseSeconds) + " 秒（"
                 + CraftingBombConfig.fuseTicks() + " tick）"), false);
         source.sendFeedback(() -> Text.literal("威力：" + CraftingBombConfig.explosionPower
-                + "，破坏方块：" + (CraftingBombConfig.destroyBlocks ? "是" : "否")
-                + "，倒计时提示：" + (CraftingBombConfig.showCountdown ? "开" : "关")), false);
+                + "，破坏方块：" + (CraftingBombConfig.destroyBlocks ? "是" : "否")), false);
         source.sendFeedback(() -> Text.literal("玩家背包合成界面也算："
                 + (CraftingBombConfig.includePlayerInventory ? "是" : "否")), false);
         return 1;

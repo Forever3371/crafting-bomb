@@ -95,7 +95,6 @@ public class CraftingBombGameTest implements FabricGameTest {
         CraftingBombConfig.fuseSeconds = 0.5;      // 10 tick
         CraftingBombConfig.explosionPower = 4.0F;  // TNT 级
         CraftingBombConfig.destroyBlocks = true;   // 必须为 true 才能用方块被炸来验证
-        CraftingBombConfig.showCountdown = false;
 
         ServerPlayerEntity player = context.createMockCreativeServerPlayerInWorld();
         BlockPos stone = context.getAbsolutePos(new BlockPos(0, 1, 0));
@@ -147,7 +146,6 @@ public class CraftingBombGameTest implements FabricGameTest {
         CraftingBombConfig.fuseSeconds = 3.0;
         CraftingBombConfig.explosionPower = 3.0F;
         CraftingBombConfig.destroyBlocks = true;
-        CraftingBombConfig.showCountdown = false;   // 测试里别刷 actionbar
         CraftingBombConfig.includePlayerInventory = false;
     }
 

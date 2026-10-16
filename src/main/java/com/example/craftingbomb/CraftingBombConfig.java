@@ -26,9 +26,6 @@ public final class CraftingBombConfig {
     /** 爆炸是否破坏方块。关掉的话只伤害玩家/生物，地形完好。 */
     public static boolean destroyBlocks = true;
 
-    /** 是否在快捷栏上方显示倒计时。 */
-    public static boolean showCountdown = true;
-
     /** 是否把"玩家自己的 2x2 合成界面"也算作工作台。默认不算。 */
     public static boolean includePlayerInventory = false;
 
@@ -66,7 +63,6 @@ public final class CraftingBombConfig {
         fuseSeconds = readDouble(props, "fuse_seconds", 3.0, 0.05, 600.0);
         explosionPower = (float) readDouble(props, "explosion_power", 3.0, 0.0, 100.0);
         destroyBlocks = readBoolean(props, "destroy_blocks", true);
-        showCountdown = readBoolean(props, "show_countdown", true);
         includePlayerInventory = readBoolean(props, "include_player_inventory", false);
         enableCommand = readBoolean(props, "enable_command", true);
     }
@@ -112,12 +108,9 @@ public final class CraftingBombConfig {
                 explosion_power=3.0
 
                 # 爆炸是否破坏方块
-                # true  = 炸掉工作台和周围一片地形
+                # true  = 炸掉工作台和周围一片地形（正常爆炸伤害）
                 # false = 只伤害玩家/生物，地形完好
                 destroy_blocks=true
-
-                # 是否在快捷栏上方显示倒计时
-                show_countdown=true
 
                 # 是否把"玩家自己的 2x2 合成界面"也算作工作台
                 # 默认 false：只管真正的工作台方块
