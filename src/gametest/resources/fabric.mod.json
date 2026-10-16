@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "crafting-bomb-test",
+  "version": "1.0.0",
+  "name": "Crafting Bomb Tests",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-gametest": [
+      "com.example.craftingbomb.test.CraftingBombGameTest"
+    ]
+  },
+  "depends": {
+    "crafting_bomb": "*"
+  }
+}

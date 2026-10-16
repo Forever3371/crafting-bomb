@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "crafting_bomb",
+  "version": "${version}",
+  "name": "Crafting Bomb",
+  "description": "打开工作台超过指定秒数就爆炸。默认 3 秒、威力 3.0、会破坏方块，都可以配置。",
+  "authors": [
+    "forever3371"
+  ],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.example.craftingbomb.CraftingBomb"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
